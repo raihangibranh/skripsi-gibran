@@ -1,12 +1,18 @@
 # app.py
 import streamlit as st
 from tensorflow.keras.models import load_model
+from keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 import numpy as np
 
+
 # --- Load model ---
-model = load_model('best_model_periodontal.keras')
+model = load_model(
+    'best_model_periodontal.keras',
+    compile=False,  # hindari masalah optimizer saat load
+    safe_mode=False # izinkan custom layer
+)
 
 # --- Fungsi prediksi ---
 def predict(img):
